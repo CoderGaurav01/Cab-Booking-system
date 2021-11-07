@@ -31,7 +31,7 @@ public:
         cout<<"Enter Cab type : ";
         cin>>cab_type;
         cout<<"Enter Cab company : ";
-        getline(cab_company);
+        cin>>cab_company;
         cout<<"Enter Cab capacity : ";
         cin>>cab_capacity;
         cout<<"Enter Cab location ID : ";
@@ -60,6 +60,9 @@ public:
     
         cout<<"Cab driver_id : "<<cab_driver_id;
     }
+    int getCabId(){
+        return cab_id;
+    }
 };
 void addCab(){
     ofstream fout;
@@ -74,7 +77,38 @@ void addCab(){
     }
     fout.close();
 }
+void getCabDetails(){
+    int choice;
+    cout<<"Select type of search :"<<endl;
+    cout<<"Search by Cab ID (1)"<<endl;
+    cout<<"Search by Cab Registration No. (2)"<<endl;
+    cout<<"Search by Cab Location (3)"<<endl;
+    cin>>choice;
+    switch (choice)
+    {
+    case 1:
+        {
+            int cab_id;
+            cout<<"Enter cab id";
+            cin>>cab_id;
+            ifstream fin;
+            fin.open("Cab.dat",ios::binary);
+            Cab c1;
+            while(fin.read((char*)&c1,sizeof(c1))){
+                int id=c1.getCabId();
+                if(id==cab_id)
+                    c1.showdata();
+            }
+            fin.close();
+            break;
+        }
+        
+    
+    default:
+        break;
+    }
+}
 int main(){
-    addCab();
+    getCabDetails();
     return 0;
 }
