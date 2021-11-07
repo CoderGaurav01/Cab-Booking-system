@@ -42,26 +42,32 @@ public:
         cin>>cab_driver_id;
     }
     void showdata(){
-         cout<<"cab ID : "<<cab_id;
+         cout<<"cab ID : "<<cab_id<<endl;
         
-        cout<<"Cab Reg. Number : "<<cab_reg_no;
+        cout<<"Cab Reg. Number : "<<cab_reg_no<<endl;
   
-        cout<<"Cab model : "<<cab_model;
+        cout<<"Cab model : "<<cab_model<<endl;
  
-        cout<<"Cab type : "<<cab_type;
+        cout<<"Cab type : "<<cab_type<<endl;
     
-        cout<<"Cab company : "<<cab_company;
+        cout<<"Cab company : "<<cab_company<<endl;
        
-        cout<<"Cab capacity : "<<cab_capacity;
+        cout<<"Cab capacity : "<<cab_capacity<<endl;
  
-        cout<<"Cab location ID : "<<location_id;
+        cout<<"Cab location ID : "<<location_id<<endl;
 
-        cout<<"Cab status : "<<cab_status;
+        cout<<"Cab status : "<<cab_status<<endl;
     
-        cout<<"Cab driver_id : "<<cab_driver_id;
+        cout<<"Cab driver_id : "<<cab_driver_id<<endl;
     }
     int getCabId(){
         return cab_id;
+    }
+    string getCabReg(){
+        return cab_reg_no;
+    }
+    int getCabLoc(){
+        return location_id;
     }
 };
 void addCab(){
@@ -89,7 +95,7 @@ void getCabDetails(){
     case 1:
         {
             int cab_id;
-            cout<<"Enter cab id";
+            cout<<"Enter cab id ";
             cin>>cab_id;
             ifstream fin;
             fin.open("Cab.dat",ios::binary);
@@ -102,13 +108,48 @@ void getCabDetails(){
             fin.close();
             break;
         }
+        case 2:
+        {
+            string cab_reg;
+            cout<<"Enter cab registration number ";
+            cin>>cab_reg;
+            ifstream fin;
+            fin.open("Cab.dat",ios::binary);
+            Cab c1;
+            while(fin.read((char*)&c1,sizeof(c1))){
+                string reg_no=c1.getCabReg();
+                if(reg_no==cab_reg)
+                    c1.showdata();
+            }
+            fin.close();
+            break;
+        }
+        case 3:
+        {
+            int loc_id;
+            cout<<"Enter cab location id ";
+            cin>>loc_id;
+            ifstream fin;
+            fin.open("Cab.dat",ios::binary);
+            Cab c1;
+            while(fin.read((char*)&c1,sizeof(c1))){
+                int id=c1.getCabLoc();
+                if(id==loc_id)
+                    c1.showdata();
+            }
+            fin.close();
+            break;
+        }
         
     
     default:
+        cout<<"Wrong Choice ";
+        getCabDetails();
         break;
     }
 }
 int main(){
+    //addCab();
     getCabDetails();
     return 0;
 }
