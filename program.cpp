@@ -27,11 +27,14 @@ public:
         cout<<"Enter Cab Reg. Number : ";
         cin>>cab_reg_no;
         cout<<"Enter Cab model : ";
-        cin>>cab_model;
+        //cin>>cab_model;
+        getline(cin,cab_model);
         cout<<"Enter Cab type : ";
-        cin>>cab_type;
+        getline(cin,cab_type);
+        //cin>>cab_type;
         cout<<"Enter Cab company : ";
-        cin>>cab_company;
+        //cin>>cab_company;
+        getline(cin,cab_company);
         cout<<"Enter Cab capacity : ";
         cin>>cab_capacity;
         cout<<"Enter Cab location ID : ";
@@ -149,7 +152,7 @@ void getCabDetails(){
     }
 }
 int main(){
-    //addCab();
+    addCab();
     getCabDetails();
     return 0;
 }
