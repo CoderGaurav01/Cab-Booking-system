@@ -151,6 +151,76 @@ void getCabDetails(){
         break;
     }
 }
+void updateCabDetails(){
+     int choice;
+    cout<<"Select type of search :"<<endl;
+    cout<<"Search by Cab ID (1)"<<endl;
+    cout<<"Search by Cab Registration No. (2)"<<endl;
+    cin>>choice;
+    switch (choice)
+    {
+    case 1:
+        {
+            int cab_id;
+            cout<<"Enter cab id ";
+            cin>>cab_id;
+            fstream f;
+            f.open("Cab.dat",ios::app | ios::binary);
+            Cab c1;
+            int flag=0;
+            int pos;
+            while(!f.eof()){
+                pos=f.tellg();
+                f.read((char*)&c1,sizeof(c1));
+                int id=c1.getCabId();
+                if(id==cab_id){
+                    c1.getdata();
+                    f.seekg(pos);
+                    f.write((char*)&c1,sizeof(c1));
+                    flag=1;
+                    break;
+                }
+            }
+            f.close();
+            if(flag==0)
+                cout<<"Record not found";
+            break;
+        }
+        case 2:
+        {
+            string cab_reg;
+            cout<<"Enter cab registration number ";
+            cin>>cab_reg;
+            fstream f;
+            f.open("Cab.dat",ios::app | ios::binary);
+            Cab c1;
+            int flag=0;
+            int pos;
+            while(!f.eof()){
+                pos=f.tellg();
+                f.read((char*)&c1,sizeof(c1));
+                string reg_no=c1.getCabReg();
+                if(reg_no==cab_reg){
+                    c1.getdata();
+                    f.seekg(pos);
+                    f.write((char*)&c1,sizeof(c1));
+                    flag=1;
+                    break;
+                }
+            }
+            f.close();
+            if(flag==0)
+                cout<<"Record not found";
+            break;
+        }
+        
+    
+    default:
+        cout<<"Wrong Choice ";
+        getCabDetails();
+        break;
+    }
+}
 int main(){
     addCab();
     getCabDetails();
