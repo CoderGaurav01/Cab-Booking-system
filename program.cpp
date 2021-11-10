@@ -73,6 +73,9 @@ public:
         return location_id;
     }
 };
+class Driver{
+
+};
 void addCab(){
     ofstream fout;
     fout.open("Cab.dat",ios::binary);
