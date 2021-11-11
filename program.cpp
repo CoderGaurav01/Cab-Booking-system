@@ -12,61 +12,71 @@ using namespace std;
 class Cab{
 private:
     int cab_id;
-    string cab_reg_no;
-    string cab_model;
-    string cab_type;
-    string cab_company;
+    char cab_reg_no[10];
+    char cab_model[20];
+    char cab_type[20];
+    char cab_company[30];
     int cab_capacity;
     int location_id;
-    string cab_status;
+    char cab_status[15];
     int cab_driver_id;
 public:
     void getdata(){
         cout<<"Enter cab ID : ";
         cin>>cab_id;
         cout<<"Enter Cab Reg. Number : ";
-        cin>>cab_reg_no;
+        gets(cab_reg_no);
         cout<<"Enter Cab model : ";
         //cin>>cab_model;
-        getline(cin,cab_model);
+        gets(cab_model);
         cout<<"Enter Cab type : ";
-        getline(cin,cab_type);
+        gets(cab_type);
         //cin>>cab_type;
         cout<<"Enter Cab company : ";
         //cin>>cab_company;
-        getline(cin,cab_company);
+        gets(cab_company);
         cout<<"Enter Cab capacity : ";
         cin>>cab_capacity;
         cout<<"Enter Cab location ID : ";
         cin>>location_id;
         cout<<"Enter Cab status : ";
-        cin>>cab_status;
+        gets(cab_status);
         cout<<"Enter Cab driver_id : ";
         cin>>cab_driver_id;
     }
     void showdata(){
          cout<<"cab ID : "<<cab_id<<endl;
         
-        cout<<"Cab Reg. Number : "<<cab_reg_no<<endl;
+        cout<<"Cab Reg. Number : ";
+        puts(cab_reg_no);
+        cout<<endl;
   
-        cout<<"Cab model : "<<cab_model<<endl;
+        cout<<"Cab model : ";
+        puts(cab_model);
+        cout<<endl;
  
-        cout<<"Cab type : "<<cab_type<<endl;
+        cout<<"Cab type : ";
+        puts(cab_type);
+        cout<<endl;
     
-        cout<<"Cab company : "<<cab_company<<endl;
+        cout<<"Cab company : ";
+        puts(cab_company);
+        cout<<endl;
        
         cout<<"Cab capacity : "<<cab_capacity<<endl;
  
         cout<<"Cab location ID : "<<location_id<<endl;
 
-        cout<<"Cab status : "<<cab_status<<endl;
+        cout<<"Cab status : ";
+        puts(cab_status);
+        cout<<endl;
     
         cout<<"Cab driver_id : "<<cab_driver_id<<endl;
     }
     int getCabId(){
         return cab_id;
     }
-    string getCabReg(){
+    char * getCabReg(){
         return cab_reg_no;
     }
     int getCabLoc(){
@@ -116,15 +126,14 @@ void getCabDetails(){
         }
         case 2:
         {
-            string cab_reg;
+            char cab_reg[10];
             cout<<"Enter cab registration number ";
-            cin>>cab_reg;
+            gets(cab_reg);
             ifstream fin;
             fin.open("Cab.dat",ios::binary);
             Cab c1;
             while(fin.read((char*)&c1,sizeof(c1))){
-                string reg_no=c1.getCabReg();
-                if(reg_no==cab_reg)
+                if(!strcmpi(c1.getCabReg(),cab_reg))
                     c1.showdata();
             }
             fin.close();
