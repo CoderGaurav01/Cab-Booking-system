@@ -84,6 +84,19 @@ public:
     }
 };
 class Driver{
+private:
+    int driver_id;
+    int driver_user_id;
+    char name[20];
+    char driver_contact[10];
+    char driver_dl[20];
+    char driver_aadhar[12];
+    int driver_cab_id;
+    int driver_age;
+    int driver_ride_count;
+
+public:
+    
 
 };
 void addCab(){
