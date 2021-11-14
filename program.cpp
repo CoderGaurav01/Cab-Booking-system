@@ -87,7 +87,7 @@ class Driver{
 private:
     int driver_id;
     int driver_user_id;
-    char name[20];
+    char driver_name[20];
     char driver_contact[10];
     char driver_dl[20];
     char driver_aadhar[12];
@@ -96,8 +96,55 @@ private:
     int driver_ride_count;
 
 public:
+    void getdata(){
+        cout<<"Enter Driver ID : ";
+        cin>>driver_id;
+        cout<<"Enter driver user id : ";
+        cin>>driver_user_id;
+        cout<<"Enter Driver name : ";
+        gets(driver_name);
+        cout<<"Enter contact number : ";
+        gets(driver_contact);
+        cout<<"Enter Driving license number : ";
+        gets(driver_dl);
+        cout<<"Enter Driver Aadhar number : ";
+        gets(driver_aadhar);
+        cout<<"Enter Cab id : ";
+        cin>>driver_cab_id;
+        cout<<"Enter Driver age : ";
+        cin>>driver_age;
+        cout<<"Enter driver ride count : ";
+        cin>>driver_ride_count;
+    }
+    void showdata(){
+         cout<<"Driver ID : "<<driver_id<<endl;
+        
+        cout<<"Driver User id : "<<driver_user_id;
+        cout<<endl;
+  
+        cout<<"Driver Name : ";
+        puts(driver_name);
+        cout<<endl;
+ 
+        cout<<"Contact number : ";
+        puts(driver_contact);
+        cout<<endl;
     
+        cout<<"Dl number : ";
+        puts(driver_dl);
+        cout<<endl;
 
+        cout<<"Aadhar number : ";
+        puts(driver_aadhar);
+        cout<<endl;
+       
+        cout<<"Cab Id : "<<driver_cab_id<<endl;
+ 
+        cout<<"Driver age : "<<driver_age<<endl;
+    
+        cout<<"Driver ride count : "<<driver_ride_count<<endl;
+    }
+    
 };
 void addCab(){
     ofstream fout;
