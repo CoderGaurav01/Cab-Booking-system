@@ -25,7 +25,8 @@ public:
         cout<<"Enter cab ID : ";
         cin>>cab_id;
         cout<<"Enter Cab Reg. Number : ";
-        gets(cab_reg_no);
+        cin>>cab_reg_no;
+        cin.sync();
         cout<<"Enter Cab model : ";
         //cin>>cab_model;
         gets(cab_model);
@@ -39,11 +40,13 @@ public:
         cin>>cab_capacity;
         cout<<"Enter Cab location ID : ";
         cin>>location_id;
-        cout<<"Enter Cab status : ";
+        cin.sync();
+        cout<<"Enter Cab status (booked/available): ";
         gets(cab_status);
         cout<<"Enter Cab driver_id : ";
         cin>>cab_driver_id;
     }
+
     void showdata(){
          cout<<"cab ID : "<<cab_id<<endl;
         
@@ -144,7 +147,7 @@ public:
     
         cout<<"Driver ride count : "<<driver_ride_count<<endl;
     }
-    
+
 };
 void addCab(){
     ofstream fout;
