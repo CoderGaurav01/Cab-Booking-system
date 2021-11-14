@@ -104,6 +104,7 @@ public:
         cin>>driver_id;
         cout<<"Enter driver user id : ";
         cin>>driver_user_id;
+        cin.sync();
         cout<<"Enter Driver name : ";
         gets(driver_name);
         cout<<"Enter contact number : ";
@@ -112,6 +113,7 @@ public:
         gets(driver_dl);
         cout<<"Enter Driver Aadhar number : ";
         gets(driver_aadhar);
+        cin.sync();
         cout<<"Enter Cab id : ";
         cin>>driver_cab_id;
         cout<<"Enter Driver age : ";
@@ -157,6 +159,19 @@ void addCab(){
     while(choice=='y'){
         c1.getdata();
         fout.write((char*)&c1,sizeof(c1));
+        cout<<"Want to add more? y/n ";
+        cin>>choice;
+    }
+    fout.close();
+}
+void addDriver(){
+    ofstream fout;
+    fout.open("Driver.dat",ios::binary);
+    Driver d1;
+    char choice='y';
+    while(choice=='y'){
+        d1.getdata();
+        fout.write((char*)&d1,sizeof(d1));
         cout<<"Want to add more? y/n ";
         cin>>choice;
     }
