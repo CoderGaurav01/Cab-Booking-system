@@ -149,7 +149,12 @@ public:
     
         cout<<"Driver ride count : "<<driver_ride_count<<endl;
     }
-
+    int getdriverId(){
+        return driver_id;
+    }
+    char * getDriverName(){
+        return driver_name;
+    }
 };
 void addCab(){
     ofstream fout;
@@ -238,6 +243,53 @@ void getCabDetails(){
     default:
         cout<<"Wrong Choice ";
         getCabDetails();
+        break;
+    }
+}
+void getDriverDetails(){
+    int choice;
+    cout<<"Select type of search :"<<endl;
+    cout<<"Search by Driver ID (1)"<<endl;
+    cout<<"Search by Driver Name. (2)"<<endl;
+    cin>>choice;
+    switch (choice)
+    {
+    case 1:
+        {
+            int driver_id;
+            cout<<"Enter Driver id ";
+            cin>>driver_id;
+            ifstream fin;
+            fin.open("Driver.dat",ios::binary);
+            Driver d1;
+            while(fin.read((char*)&d1,sizeof(d1))){
+                int id=d1.getdriverId();
+                if(id==driver_id)
+                    d1.showdata();
+            }
+            fin.close();
+            break;
+        }
+        case 2:
+        {
+            char dname[20];
+            cout<<"Enter Driver name ";
+            gets(dname);
+            ifstream fin;
+            fin.open("Driver.dat",ios::binary);
+            Driver d1;
+            while(fin.read((char*)&d1,sizeof(d1))){
+                if(!strcmp(d1.getDriverName(),dname))
+                    d1.showdata();
+            }
+            fin.close();
+            break;
+        }
+        
+    
+    default:
+        cout<<"Wrong Choice ";
+        getDriverDetails();
         break;
     }
 }
